@@ -713,6 +713,7 @@
             /* Mobile footer joins the centered card stack instead of sinking to the bottom. */
             .footer {
                 flex: 0 0 auto;
+                margin-top: clamp(2.25rem, 11svh, 6rem);
                 padding: 0 clamp(1rem, 5vw, 2rem);
                 position: relative;
                 bottom: auto;
@@ -822,6 +823,7 @@
             }
 
             .footer {
+                margin-top: clamp(2.4rem, 12svh, 5.25rem);
                 padding: 0 1rem;
             }
 
@@ -929,6 +931,10 @@
             .contact-card {
                 padding: 0.44rem 0.52rem;
             }
+
+            .footer {
+                margin-top: clamp(1rem, 5svh, 2rem);
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -990,7 +996,7 @@
                 <div class="text-center">
                     <!-- Brand/Logo area -->
                     <div class="brand-logo">
-                        <div class="logo-line">official Dolliest.com</div>
+                        <div class="logo-line">shop opening soon</div>
                     </div>
 
                     <!-- Coming Soon Message -->
@@ -1002,7 +1008,7 @@
                     <!-- Decorative divider -->
                     <div class="divider">
                         <div class="divider-line"></div>
-                        <div class="divider-dot">shop opening soon &middot; domain open to offers</div>
+                        <div class="divider-dot">Dolliest.com is open to offers</div>
                         <div class="divider-line"></div>
                     </div>
                 </div>
