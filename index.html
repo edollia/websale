@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
     <title>Dolliest.com | Dolliest</title>
     <meta name="description" content="Dolliest.com is the official Dolliest page. The Dolliest shop is opening soon, and the Dolliest.com domain is open to offers." />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="theme-color" content="#ffb3cf" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="canonical" href="https://dolliest.com/" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
     <meta property="og:title" content="Dolliest.com | Dolliest" />
     <meta property="og:description" content="The official Dolliest.com page. Dolliest shop opening soon, and the domain is open to offers." />
     <meta property="og:type" content="website" />
@@ -59,7 +63,9 @@
 
         html, body {
             height: 100%;
+            min-height: 100%;
             overflow: hidden;
+            background: white;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -75,6 +81,8 @@
         /* Main container starts with white background */
         .container {
             height: 100vh;
+            min-height: 100vh;
+            min-height: 100dvh;
             position: relative;
             overflow: hidden;
             background: white;
@@ -307,6 +315,8 @@
         /* Main content layout */
         .main-content {
             height: 100vh;
+            min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -675,14 +685,19 @@
 
             .container,
             .main-content {
-                height: 100svh;
-                min-height: 100svh;
+                height: 100vh;
+                min-height: 100vh;
+                height: 100dvh;
+                min-height: 100dvh;
             }
 
             .main-content {
                 justify-content: center;
-                gap: clamp(1rem, 3.6svh, 1.85rem);
-                padding: clamp(1.2rem, 5svh, 2.8rem) 0;
+                gap: clamp(1rem, 3.6dvh, 1.85rem);
+                padding:
+                    calc(clamp(1.2rem, 5dvh, 2.8rem) + env(safe-area-inset-top, 0px))
+                    0
+                    calc(clamp(1.2rem, 5dvh, 2.8rem) + env(safe-area-inset-bottom, 0px));
             }
 
             .center-content {
@@ -713,7 +728,7 @@
             /* Mobile footer joins the centered card stack instead of sinking to the bottom. */
             .footer {
                 flex: 0 0 auto;
-                margin-top: clamp(2.25rem, 11svh, 6rem);
+                margin-top: clamp(2.25rem, 11dvh, 6rem);
                 padding: 0 clamp(1rem, 5vw, 2rem);
                 position: relative;
                 bottom: auto;
@@ -787,8 +802,11 @@
 
         @media (max-width: 480px) {
             .main-content {
-                gap: clamp(0.85rem, 3.1svh, 1.35rem);
-                padding: clamp(0.9rem, 4.5svh, 2rem) 0;
+                gap: clamp(0.85rem, 3.1dvh, 1.35rem);
+                padding:
+                    calc(clamp(0.9rem, 4.5dvh, 2rem) + env(safe-area-inset-top, 0px))
+                    0
+                    calc(clamp(0.9rem, 4.5dvh, 2rem) + env(safe-area-inset-bottom, 0px));
             }
 
             .text-center {
@@ -823,7 +841,7 @@
             }
 
             .footer {
-                margin-top: clamp(2.4rem, 12svh, 5.25rem);
+                margin-top: clamp(2.4rem, 12dvh, 5.25rem);
                 padding: 0 1rem;
             }
 
@@ -933,7 +951,7 @@
             }
 
             .footer {
-                margin-top: clamp(1rem, 5svh, 2rem);
+                margin-top: clamp(1rem, 5dvh, 2rem);
             }
         }
 
