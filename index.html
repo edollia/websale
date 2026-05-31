@@ -313,8 +313,6 @@
             inset: 0;
             z-index: 8;
             pointer-events: none;
-            opacity: 0;
-            animation: foregroundReveal 0.9s ease-out 2.65s forwards;
         }
 
         .float-bubble {
@@ -335,8 +333,14 @@
                 inset -8px -10px 16px rgba(255, 149, 202, 0.1),
                 0 8px 24px rgba(255, 145, 198, 0.11);
             filter: blur(0.1px);
-            opacity: var(--alpha);
-            animation: bubbleDrift var(--duration) ease-in-out var(--delay) infinite alternate;
+            opacity: 0;
+            animation-name: bubbleReveal, bubbleDrift;
+            animation-duration: 0.55s, var(--duration);
+            animation-timing-function: ease-out, ease-in-out;
+            animation-delay: var(--appear), calc(var(--appear) + var(--float-delay));
+            animation-iteration-count: 1, infinite;
+            animation-direction: normal, alternate;
+            animation-fill-mode: forwards, none;
         }
 
         .float-bubble::after {
@@ -351,14 +355,14 @@
             filter: blur(0.4px);
         }
 
-        .float-bubble:nth-child(1) { --size: 78px; --left: 9%; --top: 18%; --alpha: 0.42; --duration: 7.2s; --delay: -1.2s; }
-        .float-bubble:nth-child(2) { --size: 42px; --left: 21%; --top: 62%; --alpha: 0.34; --duration: 6.4s; --delay: -2.8s; }
-        .float-bubble:nth-child(3) { --size: 96px; --left: 80%; --top: 19%; --alpha: 0.36; --duration: 8.3s; --delay: -3.4s; }
-        .float-bubble:nth-child(4) { --size: 54px; --left: 74%; --top: 68%; --alpha: 0.38; --duration: 7.8s; --delay: -1.6s; }
-        .float-bubble:nth-child(5) { --size: 30px; --left: 13%; --top: 78%; --alpha: 0.3; --duration: 5.8s; --delay: -0.9s; }
-        .float-bubble:nth-child(6) { --size: 64px; --left: 88%; --top: 49%; --alpha: 0.3; --duration: 6.9s; --delay: -4s; }
-        .float-bubble:nth-child(7) { --size: 37px; --left: 39%; --top: 20%; --alpha: 0.26; --duration: 6.1s; --delay: -2.1s; }
-        .float-bubble:nth-child(8) { --size: 48px; --left: 59%; --top: 82%; --alpha: 0.32; --duration: 7.4s; --delay: -3.1s; }
+        .float-bubble:nth-child(1) { --size: 78px; --left: 9%; --top: 18%; --alpha: 0.42; --duration: 3.6s; --appear: 3.75s; --float-delay: 0.1s; }
+        .float-bubble:nth-child(2) { --size: 42px; --left: 21%; --top: 62%; --alpha: 0.34; --duration: 3.2s; --appear: 3.95s; --float-delay: 0.15s; }
+        .float-bubble:nth-child(3) { --size: 96px; --left: 80%; --top: 19%; --alpha: 0.36; --duration: 4.15s; --appear: 4.15s; --float-delay: 0.05s; }
+        .float-bubble:nth-child(4) { --size: 54px; --left: 74%; --top: 68%; --alpha: 0.38; --duration: 3.9s; --appear: 4.35s; --float-delay: 0.2s; }
+        .float-bubble:nth-child(5) { --size: 30px; --left: 13%; --top: 78%; --alpha: 0.3; --duration: 2.9s; --appear: 4.55s; --float-delay: 0.1s; }
+        .float-bubble:nth-child(6) { --size: 64px; --left: 88%; --top: 49%; --alpha: 0.3; --duration: 3.45s; --appear: 4.75s; --float-delay: 0.15s; }
+        .float-bubble:nth-child(7) { --size: 37px; --left: 39%; --top: 20%; --alpha: 0.26; --duration: 3.05s; --appear: 4.95s; --float-delay: 0.08s; }
+        .float-bubble:nth-child(8) { --size: 48px; --left: 59%; --top: 82%; --alpha: 0.32; --duration: 3.7s; --appear: 5.15s; --float-delay: 0.12s; }
 
         .center-content {
             flex: 1;
@@ -370,9 +374,10 @@
 
         .text-center {
             text-align: center;
-            width: min(88vw, 540px);
+            width: 540px;
+            max-width: calc(100vw - 56px);
             margin: 0 auto;
-            padding: clamp(28px, 6vw, 48px) clamp(18px, 5vw, 46px);
+            padding: 44px 46px;
             background:
                 radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.94), transparent 23%),
                 radial-gradient(circle at 78% 74%, rgba(255, 190, 222, 0.2), transparent 33%),
@@ -386,14 +391,12 @@
             backdrop-filter: blur(18px) saturate(1.08);
             -webkit-backdrop-filter: blur(18px) saturate(1.08);
             opacity: 0;
-            transform: translateY(18px) scale(0.985);
-            animation: foregroundReveal 0.9s cubic-bezier(0.2, 0.86, 0.24, 1) 2.65s forwards;
+            animation: foregroundReveal 0.75s ease-out 2.65s forwards;
         }
 
         /* Brand logo section */
         .brand-logo {
             margin-bottom: 1.15rem;
-            animation: fadeInUp 1.2s ease-out 2.2s forwards;
         }
 
         .logo-line {
@@ -420,22 +423,20 @@
         .coming-soon {
             font-family: 'Bodoni Moda', Georgia, serif;
             font-weight: 400;
-            font-size: clamp(4rem, 9vw, 6.35rem);
+            font-size: 5.7rem;
             line-height: 0.9;
             margin-bottom: 0.85rem;
             letter-spacing: 0.01em;
             color: var(--elegant-black);
-            animation: fadeInUp 1.2s ease-out 2.4s forwards;
         }
 
         .subtitle {
             font-family: Georgia, 'Times New Roman', serif;
-            font-size: clamp(1.25rem, 3vw, 1.55rem);
+            font-size: 1.45rem;
             color: rgba(173, 20, 87, 0.72);
             max-width: 4rem;
             margin: 0 auto;
             line-height: 1;
-            animation: fadeInUp 1.2s ease-out 2.6s forwards;
         }
 
         /* Decorative divider */
@@ -445,11 +446,11 @@
             align-items: center;
             justify-content: center;
             gap: 0.75rem;
-            animation: fadeInUp 1.2s ease-out 2.8s forwards;
         }
 
         .divider-line {
-            width: min(5rem, 22vw);
+            width: 76px;
+            max-width: 22vw;
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(233, 30, 99, 0.55), transparent);
         }
@@ -475,12 +476,12 @@
             position: relative;
             z-index: 80;
             opacity: 0;
-            transform: translateY(18px) scale(0.985);
-            animation: foregroundReveal 0.9s cubic-bezier(0.2, 0.86, 0.24, 1) 2.8s forwards;
+            animation: foregroundReveal 0.75s ease-out 3.2s forwards;
         }
 
         .contact-card {
-            width: min(100%, 440px);
+            width: 440px;
+            max-width: calc(100vw - 32px);
             margin: 0 auto;
             text-align: center;
             background:
@@ -555,23 +556,21 @@
         }
 
         /* Fade in animation */
-        @keyframes fadeInUp {
-            from {
-                transform: translateY(30px);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-
         @keyframes foregroundReveal {
             from {
                 opacity: 0;
-                transform: translateY(18px) scale(0.985);
             }
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes bubbleReveal {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: var(--alpha);
             }
         }
 
@@ -622,7 +621,7 @@
             }
 
             .coming-soon {
-                font-size: clamp(3.6rem, 17vw, 5.2rem);
+                font-size: 4.65rem;
                 margin-bottom: 1rem;
             }
 
@@ -648,6 +647,10 @@
                 justify-content: center;
                 flex-wrap: wrap;
             }
+
+            .float-bubble:nth-child(1) { --size: 58px; --left: 7%; }
+            .float-bubble:nth-child(3) { --size: 70px; --left: 78%; }
+            .float-bubble:nth-child(6) { --size: 46px; --left: 84%; }
 
             /* Adjust curtain animations for mobile with softer shadows */
             .curtain-left {
@@ -689,7 +692,7 @@
 
         @media (max-width: 480px) {
             .coming-soon {
-                font-size: clamp(3.15rem, 16vw, 4.25rem);
+                font-size: 3.55rem;
             }
 
             .blur-1, .blur-2 {
@@ -703,6 +706,7 @@
             }
 
             .text-center {
+                max-width: calc(100vw - 28px);
                 padding: 2rem 1.05rem;
             }
 
@@ -714,6 +718,21 @@
 
             .divider-line {
                 width: 4.5rem;
+            }
+
+            .float-bubble:nth-child(2),
+            .float-bubble:nth-child(7) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .coming-soon {
+                font-size: 3.1rem;
+            }
+
+            .contact-card {
+                max-width: calc(100vw - 22px);
             }
         }
 
