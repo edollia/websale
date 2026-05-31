@@ -386,7 +386,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            z-index: -1;
+            z-index: 0;
             background:
                 radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.94), transparent 23%),
                 radial-gradient(circle at 78% 74%, rgba(255, 190, 222, 0.2), transparent 33%),
@@ -408,6 +408,8 @@
         .coming-soon,
         .subtitle,
         .divider {
+            position: relative;
+            z-index: 1;
             opacity: 0;
             animation: contentBloom 0.7s ease-out 2.98s forwards;
         }
@@ -511,7 +513,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            z-index: -1;
+            z-index: 0;
             background:
                 radial-gradient(circle at 24% 16%, rgba(255, 255, 255, 0.9), transparent 22%),
                 radial-gradient(circle at 82% 82%, rgba(255, 164, 208, 0.2), transparent 32%),
@@ -530,6 +532,8 @@
         }
 
         .contact-info {
+            position: relative;
+            z-index: 1;
             opacity: 0;
             animation: contentBloom 0.65s ease-out 3.62s forwards;
         }
@@ -803,6 +807,18 @@
                 opacity: 1 !important;
                 visibility: visible !important;
                 transform: none !important;
+            }
+
+            .text-center::before,
+            .contact-card::before,
+            .brand-logo,
+            .coming-soon,
+            .subtitle,
+            .divider,
+            .contact-info {
+                opacity: 1 !important;
+                transform: none !important;
+                filter: none !important;
             }
         }
     </style>
